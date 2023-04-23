@@ -12,9 +12,9 @@ app.use(cors())
 app.use(express.json())
 
 //routes
-app.use('/.netlify/functions/api/auth',require('../routes/auth'))
-app.use('/.netlify/functions/api/resume',require('../routes/resume'))
-app.use('/.netlify/functions/api/tempelates',require('../routes/tempelates'))
+app.use('/.netlify/functions/api/auth',require('../../routes/auth'))
+app.use('/.netlify/functions/api/resume',require('../../routes/resume'))
+app.use('/.netlify/functions/api/tempelates',require('../../routes/tempelates'))
 
 
 app.listen(port, () => {
