@@ -1,10 +1,11 @@
 {
-  "name": "inotebook",
+  "name": "ResumeForge",
   "version": "1.0.0",
-  "description": "iNotebook is notebook on cloud",
+  "description": "Resume Buider",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./node_modules/.bin/netlify-lambda serve src",
+    "build": "./node_modules/.bin/netlify-lambda build src"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +18,9 @@
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.6",
-    "nodemailer": "^6.9.0"
+    "netlify-lambda": "^2.0.16",
+    "nodemailer": "^6.9.0",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
