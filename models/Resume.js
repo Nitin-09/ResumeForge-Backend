@@ -29,6 +29,10 @@ const ResumeSchema = new Schema({
     others:{
         type: Array
     },
+    date:{
+        type: Date,
+        default: Date.now
+    },
 
 })
 
