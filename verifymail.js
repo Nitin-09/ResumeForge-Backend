@@ -5,7 +5,7 @@ const sendMail = (email,otp) => {
     service: 'gmail',
     auth: {
       user: 'nitingangwani982000@gmail.com',
-      pass: 'qbkpqwmzfunyzdsy'
+      pass: 'ncucyxdkgznfqlet'
     }
   });
 
