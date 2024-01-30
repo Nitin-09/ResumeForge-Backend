@@ -51,28 +51,32 @@ Status = false;
 router.post('/getOtp', [
   body('email', 'Enter a valid email').isEmail(),
 ], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    console.log(Status)
-    return res.status(400).json({ Status, errors: errors.array() });
-  }
   try {
-    let user = await User.findOne({ email: req.body.email });
-    if (user) {
-      return res.status(400).json({ Status, error: "Email address Already Exists" });
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ success: false, errors: errors.array() });
     }
-    let OTP = (Math.floor(100000 + Math.random() * 900000));
-    const { email } = req.body
-    sendMail(email, OTP)
-    Status = true
-    res.json({ Status, OTP })
-  }
-  catch (error) {
-    console.error(error.message)
-    res.status(500).send({ Status, error: error.message() });
 
+    const { email } = req.body;
+
+    // Check if the user with the given email exists
+    let user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ success: false, error: "User not found with this email address" });
+    }
+
+    // Generate OTP
+    const OTP = (Math.floor(100000 + Math.random() * 900000));
+
+    // Send OTP to the user's email
+    sendMail(email, OTP);
+
+    res.json({ success: true, OTP });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send({ success: false, error: error.message });
   }
-})
+});
 
 // Route 2: Authencating user using Post:- localhost:5000/api/auth/login
 Status = false;
